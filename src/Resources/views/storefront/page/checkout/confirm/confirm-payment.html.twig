@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-payment.html.twig' %}
+
+{% block page_checkout_confirm_payment_current_image %}
+	{{ parent() }}
+		{% set baseUrl = app.request.baseUrl %}
+		{% if 'Novalnet' in context.paymentMethod.handlerIdentifier and shopware.config.NovalnetPayment.settings.paymentLogo == 1 %}
+			{% set handler = context.paymentMethod.formattedHandlerIdentifier|split('_') %}
+			<img src="{{ asset("storefront/assets/img/#{handler.2}.png", '@NovalnetPayment') }}" alt="NovalnetPayment logo"/>
+			
+				{% if 'NovalnetCredit' in context.paymentMethod.handlerIdentifier %}
+				<img src="{{ asset("storefront/assets/img/novalnetmaster.png", '@NovalnetPayment') }}" alt="NovalnetPayment logo"/>
+				{% endif %}
+				
+		{% endif %}
+{% endblock %}

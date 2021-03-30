@@ -1,0 +1,20 @@
+{% block sw_order_detail_delivery_metadata %}
+    {% parent %}
+    <template v-if="!isLoading" :isLoading="isLoading">
+        <template v-if="isNovalnetPayment">
+            <sw-card class="sw-order-novalnet-card" :title="$tc('noval-payment.module.title')">                
+                    <sw-container columns="1fr 1fr">
+                        <sw-container>
+							<sw-description-list>
+								<dt>{{ $tc('noval-payment.module.comments') }}:</dt>
+									<dd class="sw-order-base__label-sales-channel">
+										<span v-html="novalnetComments">
+										</span>
+								</dd>
+                            </sw-description-list>
+                        </sw-container>
+                    </sw-container>                
+            </sw-card>
+        </template>
+    </template>
+{% endblock %}

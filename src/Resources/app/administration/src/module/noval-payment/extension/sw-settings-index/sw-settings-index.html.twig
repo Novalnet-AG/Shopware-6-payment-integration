@@ -1,0 +1,11 @@
+{% block sw_settings_content_card_slot_plugins %}
+    {% parent %}
+
+    <sw-settings-item :label="$tc('noval-payment.module.title')"
+                      :to="{ name: 'noval.payment.settings' }"
+                      :backgroundEnabled="false">
+        <template #icon>
+            <img class="sw-settings-index__novalnet-icon" :src="'novalnetpayment/administration/plugin.png' | asset">
+        </template>
+    </sw-settings-item>
+{% endblock %}

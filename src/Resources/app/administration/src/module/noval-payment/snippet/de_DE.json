@@ -1,0 +1,193 @@
+{
+  "noval-payment": {
+    "module": {
+      "title": "Novalnet",
+      "description": "PCI-konforme und lückenlose Integration mit verschiedenen Zahlungsarten und Zahlungsdienstleistungen auf einer Plattform.",
+      "txid": "Novalnet Transaktions-ID",
+      "comments": "Novalnet Kommentare"
+    },
+    "settingForm": {
+			"title": "Novalnet-Einstellungen",
+            "buttons": {
+					"save": "Einstellungen speichern",
+					"validate": "API-Anmeldeinformationen validieren"
+			},
+            "credentials": {
+                "cardTitle": "Novalnet Haupteinstellungen",                
+                "activationKey": {
+                    "label": "Aktivierungsschlüssel des Produkts",
+                    "tooltipText": "Novalnet-Aktivierungsschlüssel für das Produkt eingeben. Um diesen Aktivierungschlüssel für das Produkt zu erhalten, gehen Sie zum Novalnet-Admin-Portal - Projekte: Informationen zum jeweiligen Projekt - Parameter Ihres Shops: API Signature (Aktivierungsschlüssel des Produkts)."
+                },
+                "vendorId": "Händler-ID",
+                "authCode": "Authentifizierungscode",
+                "productId": "Projekt-ID",
+                "accessKey": "Zahlungs-Zugriffsschlüssel",
+                "tariff": {
+                    "label": "Tarif-ID",
+                    "tooltipText": "Novalnet-Tarif-ID auswählen.",
+                    "emptyText": "Tarif-ID auswählen"
+                },
+                "gatewayTimeout": {
+					"label": "Zeitlimit der Schnittstelle (in Sekunden)",
+                    "tooltipText": "Falls die Verarbeitungszeit der Bestellung das Zeitlimit der Schnittstelle überschreitet, wird die Bestellung nicht ausgeführt."
+				},
+                "paymentLogo": {
+					"label": "Logo der Zahlungsart anzeigen",
+                    "tooltipText": "Das Logo der Zahlungsart wird auf der Checkout-Seite angezeigt."
+				}
+            },
+            "merchantSettings": {
+				"cardTitle": "Verwaltung des Händlerskripts",
+				"callbackMail": "Email-Benachrichtigung für Callback aktivieren",
+				"deactivateIp": {
+					"label": "Deaktivieren Sie die IP-Adresskontrolle (nur zu Testzwecken)",
+					"tooltipText": "Diese Option ermöglicht eine manuelle Ausführung. Bitte deaktivieren Sie diese Option, bevor Sie Ihren Shop in den LIVE-Modus schalten, um nicht autorisierte Zugriffe von externen Parteien (außer von Novalnet) zu vermeiden." 
+				},
+                "mailTo": {
+                    "label": "Emailadresse (An)",
+                    "tooltipText": "Emailadresse des Empfängers"
+                },
+                "mailBcc": {
+                    "label": "Emailadresse (Bcc)",
+                    "tooltipText": "Emailadresse des Empfängers für Bcc"
+                },
+                "callbackUrl": {
+                    "label": "URL für Benachrichtigungen",
+                    "tooltipText": "Der URL für Benachrichtigungen dient dazu, Ihre Datenbank / Ihr System auf einem aktuellen Stand zu halten und den Novalnet-Transaktionsstatus abzugleichen."
+                }
+			},
+			"paymentSettings": {
+				"testmode" : {
+					"label": "Testmodus aktivieren",
+					"tooltipText": "Die Zahlung wird im Testmodus durchgeführt, daher wird der Betrag für diese Transaktion nicht eingezogen."
+				},
+				"onHold": {
+					"label": "Bearbeitungsmaßnahme",
+					"capture": "Zahlung einziehen",
+					"authroize": "Zahlung autorisieren",
+					"amountLabel": "Mindesttransaktionsbetrag für die Autorisierung (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR)",
+					"tooltipText": "Übersteigt der Bestellbetrag das genannte Limit, wird die Transaktion, bis zu ihrer Bestätigung durch Sie, auf on hold gesetzt. Sie können das Feld leer lassen, wenn Sie möchten, dass alle Transaktionen als on hold behandelt werden."
+				},
+				"guarantee": {
+					"label": "Zahlungsgarantie aktivieren",
+					"tooltipText": "Grundanforderungen für die Zahlungsgarantie<br /><br />Zugelassene Staaten: AT, DE, CH<br />Zugelassene Währung: EUR<br />Mindestbetrag der Bestellung >= 9,99 EUR<br />Mindestalter des Endkunden >= 18 Jahre<br />Rechnungsadresse und Lieferadresse müssen übereinstimmen<br />Geschenkgutscheine / Coupons sind nicht erlaubt"
+				},
+				"guaranteeMinimumOrderAmount": {
+					"label": "Mindestbestellbetrag (in der kleinsten Währungseinheit, z.B. 100 Cent = entsprechen 1.00 EUR)",
+					"tooltipText": "Diese Einstellung überschreibt die Standardeinstellung für den Mindest-Bestellbetrag. Anmerkung: der Mindest-Bestellbetrag sollte größer oder gleich 9,99 EUR sein."
+				},
+				"forceGuarantee": {
+					"label": "Zahlung ohne Zahlungsgarantie erzwingen",
+					"tooltipText": "Falls die Zahlungsgarantie aktiviert ist (wahr), die oben genannten Anforderungen jedoch nicht erfüllt werden, soll die Zahlung ohne Zahlungsgarantie verarbeitet werden."
+				},
+				"creditcard": {
+					"cardTitle": "Kreditkarte Konfiguration",
+					"cc3D": {
+						"label": "3D-Secure aktivieren",
+						"tooltipText": "3D-Secure wird für Kreditkarten aktiviert. Die kartenausgebende Bank fragt vom Käufer ein Passwort ab, welches helfen soll, betrügerische Zahlungen zu verhindern. Dies kann von der kartenausgebenden Bank als Beweis verwendet werden, dass der Käufer tatsächlich der Inhaber der Kreditkarte ist. Damit soll das Risiko von Chargebacks verringert werden."
+					},
+					"forcecc3D": {
+						"label": "3D-Secure-Zahlungen unter vorgegebenen Bedingungen durchführen",
+						"tooltipText": "Wenn 3D-Secure in dem darüberliegenden Feld nicht aktiviert ist, sollen 3D-Secure-Zahlungen nach den Einstellungen zum Modul im Novalnet-Admin-Portal unter '3D-Secure-Zahlungen durchführen (gemäß vordefinierten Filtern und Einstellungen)' durchgeführt werden. Wenn die vordefinierten Filter und Einstellungen des Moduls '3D-Secure durchführen' zutreffen, wird die Transaktion als 3D-Secure-Transaktion durchgeführt, ansonsten als Nicht-3D-Secure-Transaktion. Beachten Sie bitte, dass das Modul '3D-Secure-Zahlungen durchführen (gemäß vordefinierten Filtern und Einstellungen)' im Novalnet-Admin-Portal konfiguriert sein muss, bevor es hier aktiviert wird. Für weitere Informationen sehen Sie sich bitte die Beschreibung dieses Betrugsprüfungsmoduls an (unter dem Reiter 'Betrugsprüfungsmodule' unterhalb des Menüpunkts 'Projekte' für das ausgewähte Projekt im Novalnet-Admin-Portal) oder kontaktieren Sie das Novalnet-Support-Team."
+					},
+					"css": {
+						"cardTitle": "CSS-Einstellungen für den iFrame mit Kreditkartendaten",
+						"label": "Beschriftung",
+						"input": "Eingabe",
+						"css": "Text für das CSS"
+					}
+				},
+				"sepa": {
+					"cardTitle": "Lastschrift SEPA Konfiguration",
+					"dueDate": {
+						"label": "Abstand (in Tagen) bis zum SEPA-Einzugsdatum",
+						"tooltipText": "Geben Sie die Anzahl der Tage ein, nach denen die Zahlung vorgenommen werden soll (muss zwischen 2 und 14 Tagen liegen).",
+						"error": "SEPA Fälligkeitsdatum Ungültiger"
+					}
+				},
+				"paypal": {
+					"cardTitle": "PayPal Konfiguration"
+				},
+				"sofort": {
+					"cardTitle": "Sofortüberweisung Konfiguration"
+				},
+				"ideal": {
+					"cardTitle": "iDEAL Configuration"
+				},
+				"eps": {
+					"cardTitle": "eps Konfiguration"
+				},
+				"giropay": {
+					"cardTitle": "Giropay Konfiguration"
+				},
+				"cashpayment": {
+					"cardTitle": "Barzahlen Konfiguration",
+					"dueDate": {
+						"label": "Verfallsdatum des Zahlscheins (in Tagen)",
+						"tooltipText": "Geben Sie die Anzahl der Tage ein, um den Betrag in einer Barzahlen-Partnerfiliale in Ihrer Nähe zu bezahlen. Wenn das Feld leer ist, werden standardmäßig 14 Tage als Fälligkeitsdatum gesetzt."
+					}
+				},
+				"invoice": {
+					"cardTitle": "Kauf auf Rechnung Konfiguration",
+					"dueDate": {
+						"label": "Fälligkeitsdatum (in Tagen)",
+						"tooltipText": "Geben Sie die Anzahl der Tage ein, binnen derer die Zahlung bei Novalnet eingehen soll (muss größer als 7 Tage sein). Falls dieses Feld leer ist, werden 14 Tage als Standard-Zahlungsfrist gesetzt."
+					}
+				},
+				"prepayment": {
+					"cardTitle": "Vorauskasse Konfiguration"
+				},
+				"przelewy24": {
+					"cardTitle" : "Przelewy24 Konfiguration"
+				}
+			
+			},
+            "behaviour": {
+                "cardTitle": "Behaviour",
+                "merchantLocation": {
+                    "label": "Merchant location",
+                    "germany": "Germany",
+                    "other": "Other merchant location"
+                },
+                "intent": {
+                    "label": "Payment acquisition",
+                    "sale": "Complete payment immediately (Sale)",
+                    "authorize": "Delayed payment collection (Auth-Capture)",
+                    "order": "Delayed payment collection (Order-Auth-Capture)"
+                },
+                "submitCart": {
+                    "label": "Submit cart",
+                    "helpText": "If this option is active, cart data will be submitted to PayPal at checkout."
+                },
+                "brandName": {
+                    "label": "Your own brand name on PayPal page",
+                    "tooltipText": "This text will be displayed as the brand name on the PayPal payment page."
+                },
+                "landingPage": {
+                    "label": "PayPal landing page",
+                    "helpText": {
+                        "Login": "Login: The PayPal site displays a login screen as landing page.",
+                        "Billing": "Registration: The PayPal site displays a registration form as landing page."
+                    },
+                    "options": {
+                        "Login": "Login",
+                        "Billing": "Registration"
+                    }
+                },
+                "sendOrderNumber": {
+                    "label": "Submit order number",
+                    "helpText": "If this option is active, the order number will be submitted to PayPal at checkout."
+                },
+                "orderNumberPrefix": {
+                    "label": "Order number prefix",
+                    "tooltipText": "This text is placed before the original order number (e.g MyShop_SW20001). This helps to identify the shop where the payment was made."
+                }
+            },
+            "titleSuccess": "Success",
+            "titleError": "Error",
+            "successMessage": "Die Novalnet-Händlerdaten wurden erfolgreich eingestellt.",
+            "errorMessage": "Ein Fehler trat auf und Ihre Zahlung konnte nicht abgeschlossen werden.",
+            "emptyMessage": "Aktivierungsschlüssel für das Produkt eingeben"
+        }
+	}
+}

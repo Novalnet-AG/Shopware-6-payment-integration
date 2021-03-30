@@ -1,0 +1,118 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block page_checkout_confirm_header %}
+    <div style="margin-bottom: 15px;margin-left: 9px;padding: 6px;background-color: #e89b9b;text-align: center;display:none;" id="error_message" name="error_message"></div>
+    {{ parent() }}
+{% endblock %}
+
+{% block page_checkout_confirm %}
+    {{ parent() }}
+        
+        <link rel='stylesheet' type='text/css' media='all' href="{{ asset("storefront/assets/css/novalnet_payments.css", '@NovalnetPayment') }}">
+        <link rel='stylesheet' type='text/css' media='all' href="{{ asset("storefront/assets/css/jquery-ui.css", '@NovalnetPayment') }}">
+        <script  src="https://cdn.novalnet.de/js/v2/NovalnetUtility.js?ver=12.0.2"></script>
+        <script src="{{ asset("storefront/assets/js/lib/jquery.min.js", '@NovalnetPayment') }}" type="text/javascript"/></script>
+        <script src="{{ asset("storefront/assets/js/lib/jquery-1.12.4.js", '@NovalnetPayment') }}" type="text/javascript"/></script>
+        <script src="{{ asset("storefront/assets/js/lib/jquery-ui.js", '@NovalnetPayment') }}" type="text/javascript"/></script>
+        <script src="{{ asset("storefront/assets/js/novalnet_payments.js", '@NovalnetPayment') }}" type="text/javascript"/></script>
+
+        {% set baseUrl = app.request.baseUrl %}
+        {% set billingAddress = context.customer.activeBillingAddress %}
+        
+        {% if context.customer.birthday.date != '' %}
+            {% set birthDate = context.customer.birthday.date|format_datetime('short', 'none', locale='fr') %}
+        {% else %}
+            {% set birthDate = '' %}
+        {% endif %}
+        
+        {% if 'NovalnetSepa' in context.paymentMethod.handlerIdentifier %}
+        
+            {% block page_checkout_confirm_novalnet_card_title_sepa_card %}
+                <div class="card-title">
+                    {{ "NovalnetPayments.checkoutConfirmPage.defaultCardTitle" | trans }}
+                </div>
+            {% endblock %}
+        
+        {% set guarantee_condition = context|check_guarantee(page,shopware.config.NovalnetPayment.settings,'sepa') %}
+        <input type="hidden" name="novalnetsepaidentifier" id="novalnetsepaidentifier" value="{{ context.paymentMethod.handlerIdentifier }}">
+        <input type="hidden" form="confirmOrderForm" name="novalnetsepaid" id="novalnetsepaid" value="{{ context.paymentMethod.id }}">
+        <input type="hidden" form="confirmOrderForm" value="1" name="sepa_guarantee_success" id="sepa_guarantee_success">
+        <input type="hidden" name="guarantee_sepa" id="guarantee_sepa" value="{{ shopware.config.NovalnetPayment.settings.sepa.guarantee }}">
+        <input type="hidden" name="guarantee_force_sepa" id="guarantee_force_sepa" value="{{ shopware.config.NovalnetPayment.settings.sepa.forceGuarantee }}">
+        <input type="hidden" name="guarantee_sepa_condition" id="guarantee_sepa_condition" value="{{ guarantee_condition.success }}">
+        <input type="hidden" name="guarantee_error_sepa" id="guarantee_error_sepa" value="{{ guarantee_condition.error }}">
+        <div class="form-group">
+        <label class="form-label" for="bankHolder"><strong>{{ "NovalnetPayments.sepa.accountHolder" | trans }}* </strong></label>
+        <input type="text" form="confirmOrderForm" class="form-control" id="nn_bank_account_holder" autocomplete="off" placeholder="Holder Name" name="nn_bank_account_holder" value="{{ billingAddress.firstName }} {{ billingAddress.lastName }}" onkeypress="return sepaHolderFormat(event)">
+        </div>
+        <div class="form-group">
+        <label class="form-label" for="iban"><strong>{{ "NovalnetPayments.sepa.iban" | trans }}* </strong></label>
+        <input type="text" form="confirmOrderForm" class="form-control" id="nn_iban" placeholder="IBAN" name="nn_iban" autocomplete="off">
+        </div>
+            {% if shopware.config.NovalnetPayment.settings.sepa.guarantee == 1 and guarantee_condition.success == 1 and billingAddress.company == '' %}
+                <div class="form-group">
+                <label class="form-label" for="dob"><strong>{{ "NovalnetPayments.sepa.birth" | trans }}* </strong></label>
+                <input type="text" form="confirmOrderForm" class="form-control" id="nn_sepa_birth_date" name="nn_sepa_birth_date" autocomplete="off" placeholder="{{ "NovalnetPayments.general.dateFormat" | trans }}" value="{{ birthDate }}" onkeydown="return NovalnetUtility.isNumericBirthdate( this, event )">
+                </div>
+            {% endif %}
+        <div class="form-group">
+            <a id="sepa_mandate"><strong>{{ "NovalnetPayments.sepa.mandateConfirm" | trans }}</strong></a>
+            
+            <div id="sepa_mandate_details_desc" style="display:none;border: 1px solid #c7c8ca;padding: 16px;padding: 1rem;border-radius: 5px;">
+            <p>{{ "NovalnetPayments.sepa.mandateAuthorise" | trans }}</p>
+
+            <p><b>{{ "NovalnetPayments.sepa.mandateCreditor" | trans }}</b></p>
+
+            <p><b>{{ "NovalnetPayments.sepa.mandateNote" | trans }}</b>{{ "NovalnetPayments.sepa.mandateEntitled" | trans }}</p>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if 'NovalnetCredit' in context.paymentMethod.handlerIdentifier %}
+            
+            {% block page_checkout_confirm_novalnet_card_title_credit_card %}
+                <div class="card-title">
+                    {{ "NovalnetPayments.checkoutConfirmPage.defaultCardTitle" | trans }}
+                </div>
+            {% endblock %}
+            
+            {% set remoteIp = app.request.server.get("REMOTE_ADDR") %}
+            {% set signature = "vendor=#{shopware.config.NovalnetPayment.settings.vendorId}&product=#{shopware.config.NovalnetPayment.settings.productId}&server_ip=#{remoteIp}"|base64_encode %}
+            {% set lang = context | shop_lang %}
+            <input type="hidden" value="{{ context.paymentMethod.handlerIdentifier }}" name="novalnetccidentifier" id="novalnetccidentifier">
+            <input type="hidden" form="confirmOrderForm" value="{{ context.paymentMethod.id }}" name="novalnetccid" id="novalnetccid">
+            <input type="hidden" form="confirmOrderForm" value="" name="novalnet_cc_hash" id="novalnet_cc_hash">
+            <input type="hidden" form="confirmOrderForm" value="" name="novalnet_cc_uniqueid" id="novalnet_cc_uniqueid">
+            <input type="hidden" id="CreditcardDefaultLabel" value="{{ shopware.config.NovalnetPayment.settings.creditcard.label }}"/>
+            <input type="hidden" id="CreditcardDefaultInput" value="{{ shopware.config.NovalnetPayment.settings.creditcard.input }}"/>
+            <input type="hidden" id="CreditcardDefaultCss"  value="{{shopware.config.NovalnetPayment.settings.creditcard.css}}"/>
+            <iframe id = "nnIframe" width="50%" frameborder="0" src={{ "https://secure.novalnet.de/cc?api=#{signature}&ln=#{lang}" }} onload="novalnetIframe()"></iframe>
+        {% endif %}
+        
+        {% if 'NovalnetInvoice' in context.paymentMethod.handlerIdentifier %}
+        {% set guarantee_condition_invoice = context|check_guarantee(page,shopware.config.NovalnetPayment.settings,'invoice') %}
+            {% if shopware.config.NovalnetPayment.settings.invoice.guarantee == 1 and guarantee_condition_invoice.success == 1 and billingAddress.company == '' %}
+                {% block page_checkout_confirm_novalnet_card_title_invoice_card %}
+                    <div class="card-title">
+                        {{ "NovalnetPayments.checkoutConfirmPage.defaultCardTitle" | trans }}
+                    </div>
+                {% endblock %}
+                <div class="form-group">
+                <label class="form-label" for="dob"><strong>{{ "NovalnetPayments.sepa.birth" | trans }}* </strong></label>
+                <input type="text" form="confirmOrderForm" class="form-control" id="nn_invoice_birth_date" name="nn_invoice_birth_date" autocomplete="off" value="{{ birthDate }}" placeholder="{{ "NovalnetPayments.general.dateFormat" | trans }}" onkeydown="return NovalnetUtility.isNumericBirthdate( this, event )">
+                </div>
+            {% endif %}
+        <input type="hidden" form="confirmOrderForm" value="{{ context.paymentMethod.id }}" name="novalnetinvoiceid" id="novalnetinvoiceid">
+        <input type="hidden" form="confirmOrderForm" value="1" name="invoice_guarantee_success" id="invoice_guarantee_success">
+        <input type="hidden" name="guarantee_invoice" id="guarantee_invoice" value="{{ shopware.config.NovalnetPayment.settings.invoice.guarantee }}">
+        <input type="hidden" name="guarantee_force_invoice" id="guarantee_force_invoice" value="{{ shopware.config.NovalnetPayment.settings.invoice.forceGuarantee }}">
+        <input type="hidden" name="guarantee_invoice_condition" id="guarantee_invoice_condition" value="{{ guarantee_condition_invoice.success }}">
+        <input type="hidden" name="guarantee_error_invoice" id="guarantee_error_invoice" value="{{ guarantee_condition_invoice.error }}">
+        {% endif %}
+        <input type="hidden" id="age_empty" name="age_empty" value="{{ "NovalnetPayments.error.emptyBirth" | trans }}">
+        <input type="hidden" id="age_error" name="age_error" value="{{ "NovalnetPayments.error.errorBirth" | trans }}">
+        <input type="hidden" id="invalid_age_error" name="invalid_age_error" value="{{ "NovalnetPayments.error.invalidBirth" | trans }}">
+        <input type="hidden" id="invalid_account" name="invalid_account" value="{{ "NovalnetPayments.error.invalidCard" | trans }}">
+        <input type="hidden" id="company" name="company" value="{{ billingAddress.company }}">
+        <input type="hidden" form="confirmOrderForm" id="novalnetPaymentMethod" name="novalnetPaymentMethod" value="{{ context.paymentMethod.id }}"/>
+{% endblock %}

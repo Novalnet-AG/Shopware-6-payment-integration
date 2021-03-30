@@ -1,0 +1,59 @@
+{
+  "NovalnetPayments": {
+    "errorMessages": {
+      "genericError": "Es ist ein Fehler aufgetreten. Bitte wählen Sie eine andere Zahlungsweise."
+    },
+    "redirect": {
+      "general": " Nach der erfolgreichen Überprüfung werden Sie auf die abgesicherte Novalnet-Bestellseite umgeleitet, um die Zahlung fortzusetzen",
+      "button": "Weiterleitung..."
+    },
+    "creditcard": {
+		"cc3D": "Nach der erfolgreichen Überprüfung werden Sie auf die abgesicherte Novalnet-Bestellseite umgeleitet, um die Zahlung fortzusetzen.Bitte schließen Sie den Browser nach der erfolgreichen Zahlung nicht, bis Sie zum Shop zurückgeleitet wurden."
+	},
+    "sepa": {
+		"accountHolder": "Kontoinhaber",
+		"iban": "IBAN",
+		"birth": "Ihr Geburtsdatum",
+		"mandateConfirm": "Ich erteile hiermit das SEPA-Lastschriftmandat (elektronische Übermittlung) und bestätige, dass die Bankverbindung korrekt ist.",
+		"mandateAuthorise": "Ich ermächtige den Zahlungsempfänger, Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von dem Zahlungsempfänger auf mein Konto gezogenen Lastschriften einzulösen.",
+		"mandateCreditor": "Gläubiger-Identifikationsnummer: DE53ZZZ00000004253",
+		"mandateNote": "Hinweis: ",
+		"mandateEntitled": "Ich kann innerhalb von acht Wochen, beginnend mit dem Belastungsdatum, die Erstattung des belasteten Betrages verlangen. Es gelten dabei die mit meinem Kreditinstitut vereinbarten Bedingungen."
+	},
+	"checkoutConfirmPage": {
+		"defaultCardTitle": "Zahlungsinformationen"	
+	},
+	"error": {
+		"emptyBirth": "Geben Sie bitte Ihr Geburtsdatum ein",
+		"invalidBirth": "Geben Sie ein gültiges Geburtsdatum ein",
+		"errorBirth": "Sie müssen mindestens 18 Jahre alt sein.",
+		"invalidCard": "Ihre Kontodaten sind ungültig."
+	},
+	"guaranteeError": {
+		"generalError": "Die Zahlung kann nicht verarbeitet werden, da die grundlegenden Anforderungen für die Zahlungsgarantie nicht erfüllt wurden ( %s )",
+		"amountError": "Der Mindestbestellwert beträgt %s EUR",
+		"countryError": "Als Land ist nur Deutschland, Österreich oder Schweiz erlaubt",
+		"currencyError": "Als Währung ist nur EUR erlaubt",
+		"addressError": "Die Lieferadresse muss mit der Rechnungsadresse übereinstimmen"
+	},
+	"callback": {
+		"collectionComments": "Novalnet-Callback-Skript erfolgreich ausgeführt für die TID: %s mit dem Betrag %s am , um %s %s Uhr. Bitte suchen Sie nach der bezahlten Transaktion in unserer Novalnet-Händleradministration mit der TID: %s.",
+		"chargebackComments": "Novalnet-Callback-Nachricht erhalten: %s erfolgreich importiert für die TID: %s: Betrag: %s am %s %s. TID der Folgebuchung: %s",
+		"availableComments": "Novalnet-Callback-Skript erfolgreich ausgeführt für die TID: %s mit dem Betrag am %s, um %s  %s Uhr.",
+		"cancelledOrder": "Die Transaktion wurde storniert. Grund: %s",
+		"confirmedDueComments": "Novalnet-Callback-Skript erfolgreich ausgeführt. Die Transaktion mit der TID: %s wurde erfolgreich bestätigt und das Fälligkeitsdatum auf %s gesetzt.",
+		"confirmedComments": "Novalnet-Callback-Nachricht erhalten: Die Buchung wurde am %s um %s Uhr bestätigt.",
+		"onHoldComments": "Novalnet-Callback-Nachricht erhalten: Der Status der Transaktion mit der TID: %s wurde am %s um %s Uhr von ausstehend auf ausgesetzt geändert.",
+		"transactionCancelledComments": "Novalnet-Callback-Nachricht erhalten: Die Transaktion wurde am %s um %s Uhr storniert"
+	},
+	"communicationFailure": {
+			"general": "Novalnet-Callback-Skript erfolgreich ausgeführt.",
+			"tid": "Novalnet Transaktions-ID",
+			"test": "Testbestellung"
+	},
+	"general": {
+		"testMode": "Die Zahlung wird im Testmodus durchgeführt, daher wird der Betrag für diese Transaktion nicht eingezogen.",
+		"dateFormat": "TT/MM/JJJJ"
+	}
+  }
+}

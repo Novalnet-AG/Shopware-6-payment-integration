@@ -1,0 +1,101 @@
+{% block noval_payment_settings %}
+    <sw-page class="noval-payment">
+        {% block noval_payment_settings_header %}
+            <template slot="smart-bar-header">
+                <h2>
+                    {{ $tc('sw-settings.index.title') }}
+                    <sw-icon name="small-arrow-medium-right" small></sw-icon>
+                    {{ $tc('noval-payment.settingForm.title') }}
+                </h2>
+            </template>
+        {% endblock %}
+        
+        {% block noval_payment_settings_actions %}
+            <template #smart-bar-actions>
+				
+				{% block noval_payment_actions_validate %}
+                    <sw-button-process @click="onValidate"
+									   v-model="isValidateSuccessful"
+									   :isLoading="isValidating"
+                                       :disabled="validateButtonDisabled">
+                        {{ $tc('noval-payment.settingForm.buttons.validate') }}
+                    </sw-button-process>
+                {% endblock %}
+				
+				{% block noval_payment_actions_save %}
+                    <sw-button-process v-model="isSaveSuccessful"
+                                       class="sw-settings-login-registration__save-action"
+                                       variant="primary"
+                                       :isLoading="isLoading"
+                                       :disabled="isLoading"
+                                       @click="onSave">
+                        {{ $tc('noval-payment.settingForm.buttons.save') }}
+                    </sw-button-process>
+                {% endblock %}
+            
+            </template>
+        {% endblock %}
+        
+        {% block noval_payment_content %}
+			
+			<template #content>
+				{% block noval_payment_content_card %}
+					<sw-card-view>
+					
+						{% block noval_payment_content_sales_channel_config %}
+							<sw-sales-channel-config v-model="config"
+													 ref="configComponent"
+													 domain="NovalnetPayment.settings">
+													 
+								{% block noval_payment_content_sales_channelconfig_card %}
+								  <template #select="{ onInput, selectedSalesChannelId, salesChannel }">
+									{% block noval_payment_content_sales_channelconfig_card_sales_channel %}
+									  <sw-card title="Sales Channel Switch">
+											{% block noval_payment_content_card_channel_config_card_content %}
+												<sw-single-select v-model="selectedSalesChannelId"
+																  labelProperty="translated.name"
+																  valueProperty="id"
+																  :options="salesChannel"
+																  @change="onInput">
+												</sw-single-select>
+											{% endblock %}
+									  </sw-card>
+									{% endblock %}
+								  </template>
+								{% endblock %}
+								
+								{% block noval_payment_config_content_channel_config_cards %}
+									<template #content="{ actualConfigData, allConfigs, selectedSalesChannelId }">
+                                        <div v-if="actualConfigData">
+											
+											{% block noval_payment_content_card_channel_config_credentials_card %}
+                                                <noval-payment-credentials :actualConfigData="actualConfigData"
+                                                                       :allConfigs="allConfigs"
+                                                                       :selectedSalesChannelId="selectedSalesChannelId">
+                                                </noval-payment-credentials>
+                                            {% endblock %}
+                                            
+                                            {% block noval_payment_content_card_channel_config_payment_card %}
+                                                <noval-payment-configuration :actualConfigData="actualConfigData"
+                                                                       :allConfigs="allConfigs"
+                                                                       :selectedSalesChannelId="selectedSalesChannelId">
+                                                </noval-payment-configuration>
+                                            {% endblock %}
+                                            
+										</div>
+									</template>
+								{% endblock %}
+										 
+							</sw-sales-channel-config>
+						{% endblock %}
+						
+						{% block noval_payment_content_card_loading %}
+                            <sw-loader v-if="isLoading"></sw-loader>
+                        {% endblock %}
+                        	
+					</sw-card-view>
+				{% endblock %}
+			</template>
+        {% endblock %}   
+    </sw-page>
+{% endblock %}

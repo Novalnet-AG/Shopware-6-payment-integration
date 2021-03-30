@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Novalnet\NovalnetPayment\Subscriber\PaymentSubscriber">
+			<argument type="service" id="Doctrine\DBAL\Connection"/>
+			<argument type="service" id="Symfony\Component\HttpFoundation\Session\SessionInterface"/>
+			<argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="Novalnet\NovalnetPayment\Twig\Filter\CustomFilter">
+			<argument type="service" id="translator"/>
+			<argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="twig.extension"/>
+        </service>
+        <service id="Novalnet\NovalnetPayment\Controller\CallbackController" public="true">
+			<argument type="service" id="payment_method.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="Shopware\Core\Content\MailTemplate\Service\MailService"/>
+            <argument type="service" id="mail_template.repository"/>
+            <argument type="service" id="translator"/>
+            <argument type="service" id="Symfony\Component\HttpFoundation\Session\SessionInterface"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        <service id="Novalnet\NovalnetPayment\Resources\translations\de_DE\NovalPaymentSnippetFile_de_DE">
+            <tag name="shopware.snippet.file"/>
+        </service>
+
+        <service id="Novalnet\NovalnetPayment\Resources\translations\en_GB\NovalPaymentSnippetFile_en_GB">
+            <tag name="shopware.snippet.file"/>
+        </service>
+        <service id="Novalnet\NovalnetPayment\Controller\RedirectController">
+            <argument type="service" id="Symfony\Component\HttpFoundation\Session\SessionInterface"/>
+            <tag name="controller.service_arguments" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Helper\NovalnetHelper">
+			<argument type="service" id="language.repository"/>
+			<argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+			<argument type="service" id="router.default"/>
+			<argument type="service" id="Doctrine\DBAL\Connection"/>
+			<argument type="service" id="mail_template.repository"/>
+            <argument type="service" id="Shopware\Core\Content\MailTemplate\Service\MailService"/>
+            <argument type="service" id="Symfony\Component\HttpFoundation\Session\SessionInterface"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="logger"/>
+            <argument>%kernel.shopware_version%</argument>
+        </service>
+        <service id="Novalnet\NovalnetPayment\Controller\ApiController" public="true">
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+    </services>
+</container>

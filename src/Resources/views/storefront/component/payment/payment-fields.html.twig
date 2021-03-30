@@ -1,0 +1,42 @@
+{% sw_extends '@Storefront/storefront/component/payment/payment-fields.html.twig' %}
+
+	{% block component_payment_method %}
+		{% if shopware.config.NovalnetPayment.settings.clientId is empty or shopware.config.NovalnetPayment.settings.tariff is empty and 'Novalnet' in payment.handlerIdentifier %}
+				
+		{% else %}
+			{{ parent() }}
+		{% endif %}
+	{% endblock %}
+         
+	{% block component_payment_method_image %}
+		{{ parent() }}
+		{% if 'Novalnet' in payment.handlerIdentifier and shopware.config.NovalnetPayment.settings.paymentLogo == 1 %}
+			{% set baseUrl = app.request.baseUrl %}
+			{% set imageName = payment.formattedHandlerIdentifier|split('_') %}
+			<img src="{{ asset("storefront/assets/img/#{imageName.2}.png", '@NovalnetPayment') }}" alt="NovalnetPayment logo"/>
+				
+				{% if 'NovalnetCredit' in payment.handlerIdentifier %}
+				<img src="{{ asset("storefront/assets/img/novalnetmaster.png", '@NovalnetPayment') }}" alt="NovalnetPayment logo"/>
+				{% endif %}
+				
+		{% endif %}
+	{% endblock %}
+
+	{% block component_payment_method_description %}
+        <div class="payment-method-description">
+        {% set paymentShortname = payment.customfields.novalnet_payment_method_name|replace({'novalnet': ""}) %}
+        {% set testMode = paymentShortname | test_mode_description(shopware.config.NovalnetPayment.settings) %}
+		 <strong>{{ payment.translated.name }}</strong>
+            {% if payment.translated.description %}
+				{% if 'NovalnetCredit' in payment.handlerIdentifier and (shopware.config.NovalnetPayment.settings.creditcard.cc3D == 1 or shopware.config.NovalnetPayment.settings.creditcard.forcecc3D == 1) %}
+					<p>{{ "NovalnetPayments.creditcard.cc3D" | trans | raw }}</p>
+				{% else %}
+					<p>{{ payment.translated.description|raw }}</p>
+				{% endif %}
+				
+				{% if testMode is not empty %}
+					<p style="color:red;">{{ "NovalnetPayments.general.testMode" | trans | raw }}</p>
+				{% endif %}
+           {% endif %}
+        </div>
+    {% endblock %}

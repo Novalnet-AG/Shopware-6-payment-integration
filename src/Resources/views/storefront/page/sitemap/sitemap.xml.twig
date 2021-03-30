@@ -1,0 +1,16 @@
+{% sw_extends '@Storefront/storefront/page/sitemap/sitemap.xml.twig' %}
+
+{% block sitemap %}
+{% block sitemap_content %}
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        {% block sitemap_content_sitemaps %}
+            {% for sitemap in page.sitemaps %}
+                <sitemap>
+                    <loc>{{ absolute_url(sitemap.filename) }}</loc>
+                    <lastmod>{{ sitemap.created|date('c') }}</lastmod>
+                </sitemap>
+            {% endfor %}
+        {% endblock %}
+    </sitemapindex>
+{% endblock %}
+{% endblock %}

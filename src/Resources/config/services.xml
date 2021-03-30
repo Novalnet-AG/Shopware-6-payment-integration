@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+	
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetPrepayment">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetIdeal">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="router.default"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetEps">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="router.default"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetSofort">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="router.default"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetPaypal">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="router.default"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetPrzelewy24">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="router.default"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetGiropay">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="router.default"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetInvoice">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetSepa">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+       <service id="Novalnet\NovalnetPayment\Service\NovalnetCreditCard">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="router.default"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+        <service id="Novalnet\NovalnetPayment\Service\NovalnetCashPayment">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="Novalnet\NovalnetPayment\Helper\NovalnetHelper"/>
+            <tag name="shopware.payment.method.sync" />
+        </service>
+    </services>
+</container>

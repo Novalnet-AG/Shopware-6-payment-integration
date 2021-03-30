@@ -1,0 +1,29 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_main %}
+<hr></hr>
+<div class="container"><br />{{ "NovalnetPayments.redirect.general" | trans }}
+<form id="novalnetForm"
+              data-confirm-order="true"
+              action="{{ redirectUrl }}"
+              method="post">
+{% for dataKey,dataValue in data %}
+   <input id="{{dataKey}}" value="{{dataValue}}" name="{{dataKey}}" type="hidden"/>
+    {% endfor %}
+<br />
+<button id="redirectPage"
+                        class="btn btn-primary btn-lg"
+                        form="novalnetForm"
+                        type="submit">
+                    {{ "NovalnetPayments.redirect.button" | trans }}
+                </button>
+</form>
+</div>
+{{ parent() }}
+<script type="text/javascript">
+	document.getElementById('novalnetForm').submit();
+	document.getElementById("redirectPage").addEventListener("click", function(event){
+  event.preventDefault()
+});
+</script>
+{% endblock %}

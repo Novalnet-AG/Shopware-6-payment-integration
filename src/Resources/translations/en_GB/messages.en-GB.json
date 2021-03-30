@@ -1,0 +1,59 @@
+{
+  "NovalnetPayments": {
+    "errorMessages": {
+      "genericError": "An error has occurred. Please try another payment method."
+    },
+    "redirect": {
+      "general": "After the successful verification, you will be redirected to Novalnet secure order page to proceed with the payment",
+      "button": "Redirecting..."
+    },
+    "creditcard": {
+        "cc3D": "After the successful verification, you will be redirected to Novalnet secure order page to proceed with the payment.Please don’t close the browser after successful payment, until you have been redirected back to the Shop"
+    },
+    "sepa": {
+        "accountHolder": "Account holder",
+        "iban": "IBAN",
+        "birth": "Your Date Of Birth",
+        "mandateConfirm": "I hereby grant the mandate for the SEPA direct debit (electronic transmission) and confirm that the given bank details are correct!",
+        "mandateAuthorise": "I authorise (A) Novalnet AG to send instructions to my bank to debit my account and (B) my bank to debit my account in accordance with the instructions from Novalnet AG.",
+        "mandateCreditor": "Creditor identifier: DE53ZZZ00000004253",
+        "mandateNote": "Note: ",
+        "mandateEntitled": "You are entitled to a refund from your bank under the terms and conditions of your agreement with bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited."
+    },
+    "checkoutConfirmPage": {
+        "defaultCardTitle": "Payment Information"   
+    },
+    "error": {
+        "emptyBirth": "Please enter your date of birth",
+        "invalidBirth": "Please enter valid birth date",
+        "errorBirth": "You need to be at least 18 years old",
+        "invalidCard": "Your account details are invalid"
+    },
+    "guaranteeError": {
+        "generalError": "The payment cannot be processed, because the basic requirements for the payment guarantee haven't been met ( %s )",
+        "amountError": "Minimum order amount must be %s EUR",
+        "countryError": "Only Germany, Austria or Switzerland are allowed",
+        "currencyError": "Only EUR currency allowed",
+        "addressError": "The shipping address must be the same as the billing address"
+    },
+    "callback": {
+        "collectionComments": "Novalnet Callback Script executed successfully for the TID: %s with amount %s on %s %s. Please refer PAID transaction in our Novalnet Merchant Administration with the TID: %s.",
+        "chargebackComments": "Novalnet callback received. %s executed successfully for the TID: %s amount: %s on %s %s The subsequent TID: %s.",
+        "availableComments": "Novalnet Callback Script executed successfully for the TID: %s with amount %s on %s %s",
+        "cancelledOrder": "The transaction has been canceled due to:  %s",
+        "confirmedDueComments": "Novalnet Callback Script executed successfully. The transaction has been confirmed successfully for the TID: %s and the due date updated as %s",
+        "confirmedComments": "Novalnet callback received. The transaction has been confirmed on %s %s.",
+        "onHoldComments": "Novalnet callback received. The transaction status has been changed from pending to on hold for the TID: %s on %s %s.",
+        "transactionCancelledComments": "Novalnet callback received. The transaction has been canceled on %s %s."
+    },
+    "communicationFailure": {
+            "general": "Novalnet Callback Script executed successfully.",
+            "tid": "Novalnet transaction ID",
+            "test": "Test Order"
+    },
+    "general": {
+        "testMode": "The payment will be processed in the test mode therefore amount for this transaction will not be charged",
+        "dateFormat": "DD/MM/YYYY"
+    }
+  }
+}
