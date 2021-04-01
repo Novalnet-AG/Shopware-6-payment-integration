@@ -7,7 +7,6 @@ Novalnet payment plugin for Shopware 6 simplifies your daily work by automating 
 
 Shopware 6 is the next generation shop system based on advanced hook system. With the open source and commercial versions, users can easily create Shopware 6 storefronts based on Twig and Bootstrap technologies. Novalnet’s Shopware 6 payment plugin supports international and local payments including payment guarantee and cash payment particularly for Shopware. We encrypt our end customer data (strong encryption) to free you from data protection concerns and from payment related licenses.
 
-
 ## Advantages
 
 -	Easy configuration for all payment methods - international and local
@@ -23,7 +22,6 @@ Shopware 6 is the next generation shop system based on advanced hook system. Wit
 -	Clear real-time overview and monitoring of payment status
 -	Automated bookkeeping report in XML, SOAP, CSV, MT940
 
-
 ## Compatibility
 
 Shopware 6 payment plugin is compatible with below technical capabilities. 
@@ -32,7 +30,6 @@ Shopware 6 payment plugin is compatible with below technical capabilities.
 - [x]	Linux based OS with Apache 2.2 or 2.4 
 - [x]	PHP 7.2.0 or higher
 - [x]	MySQL 5.7 or higher
-
 
 ## Key Features
 
@@ -45,7 +42,6 @@ Shopware 6 payment plugin is compatible with below technical capabilities.
 -	Referrer id can be defined
 -	On-hold transaction configuration in the shop admin panel
 -	Responsive templates
-
 
 ## Supported payment methods
 
@@ -63,7 +59,6 @@ Shopware 6 payment plugin is compatible with below technical capabilities.
 -	Direct Debit SEPA with payment guarantee
 -	Invoice with payment guarantee
 
-
 ## Quick Installation
 
 1. **Login** to shop backend, move to:
@@ -75,7 +70,6 @@ Shopware 6 payment plugin is compatible with below technical capabilities.
 
 3. Click **Install** to install the Novalnet Shopware 6 payment plugin
 
-
 ## Documentation & Support
 For more information about the integration, please get in touch with us: sales@novalnet.de or +49 89 9230683-20 or by contacting us <a href="https://www.novalnet.de/kontakt/sales"> here.</a>
 
@@ -85,7 +79,6 @@ Feringastr. 4<br>
 85774 Unterföhring<br>
 Deutschland<br>
 Website: <a href= "https://www.novalnet.de/"> www.novalnet.de </a>
-
 
 ## Licenses
 
