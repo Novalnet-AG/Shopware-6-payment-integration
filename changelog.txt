@@ -33,4 +33,5 @@ Major version release: Entire restructure & optimization of older version with u
 * Enhanced - Barzahlen payment name and logo
 
 = 1.0.0  - 2021.01.05 =
-		   - New release
+	   - New release
+	   
