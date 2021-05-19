@@ -1,6 +1,6 @@
 *** Changelog ***
 
-= 12.1.0 - 2021.05.17 =
+= 12.1.0 - 2021.05.18 =
 * New      - Implemented instalment payments for Direct Debit SEPA and Invoice
 * Fix      - Saved card/account information can be deleted in Safari and Firefox browsers 
 * Fix      - Placed the saved card/account details view above change payment method button
